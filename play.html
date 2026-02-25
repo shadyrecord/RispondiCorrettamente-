@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Domanda Speciale</title>
+
+<style>
+body {
+    margin: 0;
+    background: #0f172a;
+    color: #e5e7eb;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.box {
+    background: #020617;
+    padding: 25px;
+    border-radius: 14px;
+    width: 340px;
+    text-align: center;
+    box-shadow: 0 0 25px rgba(0,0,0,0.7);
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 6px;
+    border: none;
+    font-size: 16px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 8px;
+    background: #22c55e;
+    color: #000;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 20px;
+    min-height: 40px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>Domanda</h2>
+    <p><strong>Migena Hoxha do hajm bashk sonte?</strong></p>
+
+    <input type="text" id="answer" placeholder="Scrivi SI / NO">
+    <br>
+    <button onclick="checkAnswer()">Invia</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+const rispostePositive = ["si", "po"];
+const risposteNegative = ["no", "jo"];
+
+const testoFelice = "YUPPIIIII 😄🎉😄🎉 Non vedo l’ora!";
+const testoTriste = "😢😢😢😢😢";
+
+function checkAnswer() {
+    const input = document.getElementById("answer").value.trim().toLowerCase();
+    const result = document.getElementById("result");
+    result.textContent = "";
+
+    if (rispostePositive.includes(input)) {
+        scriviLettere(testoFelice, result);
+    } 
+    else if (risposteNegative.includes(input)) {
+        scriviLettere(testoTriste, result);
+    } 
+    else {
+        result.textContent = "Scrivi solo SI / PO oppure NO / JO";
+    }
+}
+
+function scriviLettere(testo, elemento) {
+    let i = 0;
+    const intervallo = setInterval(() => {
+        elemento.textContent += testo[i];
+        i++;
+        if (i >= testo.length) {
+            clearInterval(intervallo);
+        }
+    }, 70);
+}
+</script>
+
+</body>
+</html>
